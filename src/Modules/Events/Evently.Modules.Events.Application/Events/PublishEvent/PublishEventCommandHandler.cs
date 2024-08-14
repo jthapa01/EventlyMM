@@ -1,6 +1,6 @@
+﻿using Evently.Common.Application.Messaging;
+using Evently.Common.Domain;
 using Evently.Modules.Events.Application.Abstractions.Data;
-using Evently.Modules.Events.Application.Abstractions.Messaging;
-using Evently.Modules.Events.Domain.Abstractions;
 using Evently.Modules.Events.Domain.Events;
 using Evently.Modules.Events.Domain.TicketTypes;
 
@@ -9,7 +9,8 @@ namespace Evently.Modules.Events.Application.Events.PublishEvent;
 internal sealed class PublishEventCommandHandler(
     IEventRepository eventRepository,
     ITicketTypeRepository ticketTypeRepository,
-    IUnitOfWork unitOfWork) : ICommandHandler<PublishEventCommand>
+    IUnitOfWork unitOfWork)
+    : ICommandHandler<PublishEventCommand>
 {
     public async Task<Result> Handle(PublishEventCommand request, CancellationToken cancellationToken)
     {

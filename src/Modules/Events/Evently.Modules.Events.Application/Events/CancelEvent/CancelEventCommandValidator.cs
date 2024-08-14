@@ -1,4 +1,4 @@
-using FluentValidation;
+﻿using FluentValidation;
 
 namespace Evently.Modules.Events.Application.Events.CancelEvent;
 

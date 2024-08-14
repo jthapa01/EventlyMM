@@ -1,6 +1,6 @@
+﻿using Evently.Common.Application.Messaging;
+using Evently.Common.Domain;
 using Evently.Modules.Events.Application.Abstractions.Data;
-using Evently.Modules.Events.Application.Abstractions.Messaging;
-using Evently.Modules.Events.Domain.Abstractions;
 using Evently.Modules.Events.Domain.Events;
 using Evently.Modules.Events.Domain.TicketTypes;
 
@@ -20,9 +20,9 @@ internal sealed class CreateTicketTypeCommandHandler(
         {
             return Result.Failure<Guid>(EventErrors.NotFound(request.EventId));
         }
-        
+
         var ticketType = TicketType.Create(@event, request.Name, request.Price, request.Currency, request.Quantity);
-        
+
         ticketTypeRepository.Insert(ticketType);
 
         await unitOfWork.SaveChangesAsync(cancellationToken);

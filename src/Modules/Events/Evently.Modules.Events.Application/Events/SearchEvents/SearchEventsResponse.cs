@@ -1,4 +1,4 @@
-using Evently.Modules.Events.Application.Events.GetEvents;
+﻿using Evently.Modules.Events.Application.Events.GetEvents;
 
 namespace Evently.Modules.Events.Application.Events.SearchEvents;
 

@@ -1,4 +1,4 @@
-namespace Evently.Modules.Events.Application.TicketTypes.GetTicketType;
+﻿namespace Evently.Modules.Events.Application.TicketTypes.GetTicketType;
 
 public sealed record TicketTypeResponse(
     Guid Id,

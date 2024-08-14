@@ -1,11 +1,11 @@
+﻿using Evently.Common.Application.Messaging;
+using Evently.Common.Domain;
 using Evently.Modules.Events.Application.Abstractions.Data;
-using Evently.Modules.Events.Application.Abstractions.Messaging;
-using Evently.Modules.Events.Domain.Abstractions;
 using Evently.Modules.Events.Domain.Categories;
 
 namespace Evently.Modules.Events.Application.Categories.ArchiveCategory;
 
-internal sealed class ArchiveCategoryCommandHandler(ICategoryRepository categoryRepository,IUnitOfWork unitOfWork)
+internal sealed class ArchiveCategoryCommandHandler(ICategoryRepository categoryRepository, IUnitOfWork unitOfWork)
     : ICommandHandler<ArchiveCategoryCommand>
 {
     public async Task<Result> Handle(ArchiveCategoryCommand request, CancellationToken cancellationToken)
@@ -28,5 +28,4 @@ internal sealed class ArchiveCategoryCommandHandler(ICategoryRepository category
 
         return Result.Success();
     }
-    
 }

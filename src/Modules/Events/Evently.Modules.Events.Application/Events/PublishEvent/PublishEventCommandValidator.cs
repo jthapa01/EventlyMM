@@ -1,4 +1,4 @@
-using FluentValidation;
+﻿using FluentValidation;
 
 namespace Evently.Modules.Events.Application.Events.PublishEvent;
 
@@ -7,5 +7,5 @@ internal sealed class PublishEventCommandValidator : AbstractValidator<PublishEv
     public PublishEventCommandValidator()
     {
         RuleFor(c => c.EventId).NotEmpty();
-    }   
+    }
 }

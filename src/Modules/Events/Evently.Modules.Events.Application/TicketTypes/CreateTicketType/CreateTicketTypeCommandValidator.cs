@@ -1,4 +1,4 @@
-using FluentValidation;
+﻿using FluentValidation;
 
 namespace Evently.Modules.Events.Application.TicketTypes.CreateTicketType;
 
@@ -10,6 +10,6 @@ internal sealed class CreateTicketTypeCommandValidator : AbstractValidator<Creat
         RuleFor(c => c.Name).NotEmpty();
         RuleFor(c => c.Price).GreaterThan(decimal.Zero);
         RuleFor(c => c.Currency).NotEmpty();
-        RuleFor(c=>c.Quantity).GreaterThan(decimal.Zero);
+        RuleFor(c => c.Quantity).GreaterThan(decimal.Zero);
     }
 }
