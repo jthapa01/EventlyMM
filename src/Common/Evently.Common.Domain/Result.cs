@@ -4,7 +4,7 @@ namespace Evently.Common.Domain;
 
 public class Result
 {
-    public Result(bool isSuccess, Error error)
+    protected Result(bool isSuccess, Error error)
     {
         if (isSuccess && error != Error.None ||
             !isSuccess && error == Error.None)
@@ -24,7 +24,7 @@ public class Result
 
     public static Result Success() => new(true, Error.None);
 
-    public static Result<TValue> Success<TValue>(TValue value) =>
+    protected static Result<TValue> Success<TValue>(TValue value) =>
         new(value, true, Error.None);
 
     public static Result Failure(Error error) => new(false, error);

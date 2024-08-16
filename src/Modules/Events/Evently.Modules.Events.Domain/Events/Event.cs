@@ -9,7 +9,7 @@ public sealed class Event : Entity
     {
     }
 
-    public Guid Id { get; private set; }
+    public Guid Id { get; private init; }
 
     public Guid CategoryId { get; private set; }
 

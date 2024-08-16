@@ -59,11 +59,6 @@ internal sealed class GetEventQueryHandler(IDbConnectionFactory dbConnectionFact
             request,
             splitOn: nameof(TicketTypeResponse.TicketTypeId));
 
-        if (!eventsDictionary.TryGetValue(request.EventId, out EventResponse eventResponse))
-        {
-            return Result.Failure<EventResponse>(EventErrors.NotFound(request.EventId));
-        }
-
-        return eventResponse;
+        return !eventsDictionary.TryGetValue(request.EventId, out EventResponse eventResponse) ? Result.Failure<EventResponse>(EventErrors.NotFound(request.EventId)) : eventResponse;
     }
 }

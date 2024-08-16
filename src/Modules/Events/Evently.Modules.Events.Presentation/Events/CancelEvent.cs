@@ -1,6 +1,6 @@
 ﻿using Evently.Common.Domain;
-using Evently.Common.Presentation.ApiResults;
 using Evently.Common.Presentation.Endpoints;
+using Evently.Common.Presentation.Results;
 using Evently.Modules.Events.Application.Events.CancelEvent;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -13,7 +13,7 @@ internal sealed class CancelEvent : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapDelete("events/{id}/cancel", async (Guid id, ISender sender) =>
+        app.MapDelete("events/{id:guid}/cancel", async (Guid id, ISender sender) =>
         {
             Result result = await sender.Send(new CancelEventCommand(id));
 
