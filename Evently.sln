@@ -9,6 +9,12 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Directory.Build.props = Directory.Build.props
 		docker-compose.override.yml = docker-compose.override.yml
 		docker-compose.yml = docker-compose.yml
+		scratch\Evently_Events_Categories_Docker_Endpoint.http = scratch\Evently_Events_Categories_Docker_Endpoint.http
+		scratch\Evently_Events_Docker_Endpoint.http = scratch\Evently_Events_Docker_Endpoint.http
+		scratch\Evently_Events_TicketTypes_Docker_Endpoint.http = scratch\Evently_Events_TicketTypes_Docker_Endpoint.http
+		scratch\Evently_Users_Docker_Endpoint.http = scratch\Evently_Users_Docker_Endpoint.http
+		scratch\http-client.env.json = scratch\http-client.env.json
+		scratch\scratch.txt = scratch\scratch.txt
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{D3B48DEC-BFCF-4925-A051-D242FFA31149}"
