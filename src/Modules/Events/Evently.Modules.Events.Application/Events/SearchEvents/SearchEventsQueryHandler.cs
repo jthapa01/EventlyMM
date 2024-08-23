@@ -25,7 +25,7 @@ internal sealed class SearchEventsQueryHandler(IDbConnectionFactory dbConnection
             request.StartDate?.Date,
             request.EndDate?.Date,
             request.PageSize,
-            (request.Page - 1) * request.PageSize);
+            request.Page > 0 ?(request.Page - 1) * request.PageSize : request.Page);
 
         IReadOnlyCollection<EventResponse> events = await GetEventsAsync(connection, parameters);
 

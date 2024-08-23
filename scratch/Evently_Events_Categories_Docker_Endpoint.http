@@ -1,0 +1,56 @@
+@id = e71d1443-84ac-489c-8495-99828c48e09d
+
+###
+# group: Categories
+# @name Get Categories
+GET {{api_url}}/categories
+Content-Type: application/json
+
+<> 2024-08-23T130929.200.json
+<> 2024-08-23T130907.200.json
+
+
+###
+# group: Categories
+# @name Get Category
+GET {{api_url}}/categories/{{id}}
+Content-Type: application/json
+
+<> 2024-08-23T131453.200.json
+<> 2024-08-23T131408.200.json
+
+
+###
+# group: Categories
+# @name Create Category
+POST {{api_url}}/categories
+Content-Type: application/json
+
+{
+  "name": "Rock Music"
+}
+
+<> 2024-08-23T131447.200.json
+<> 2024-08-23T131205.200.json
+
+
+###
+# group: Categories
+# @name Update Category
+PUT {{api_url}}/categories/{{id}}
+Content-Type: application/json
+
+{
+  "name": "Updated Category Name"
+}
+
+
+###
+# group: Categories
+# @name Archive Category
+PUT {{api_url}}/categories/{{id}}/archive
+Content-Type: application/json
+
+{
+  "id": "00000000-0000-0000-0000-000000000000"
+}

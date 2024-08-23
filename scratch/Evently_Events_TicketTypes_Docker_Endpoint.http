@@ -1,0 +1,54 @@
+@eventId = e7baef7e-141c-44f5-bb52-fe026fe33b44
+@ticketTypeId = 5b603909-4a28-45d1-8e9e-bb90677dc9a6
+
+###
+# group: TicketType
+# @name Create TicketTypes per Event
+POST {{api_url}}/ticket-types
+Content-Type: application/json
+
+{
+  "eventId": "e7baef7e-141c-44f5-bb52-fe026fe33b44",
+  "name": "VIP",
+  "price": 100.00,
+  "currency": "USD",
+  "quantity": 100
+}
+
+<> 2024-08-23T133843.200.json
+<> 2024-08-14T173331.200.json
+
+###
+# group: TicketTypes
+# @name Get TicketTypes per Event
+GET {{api_url}}/ticket-types?eventId={{eventId}}
+
+<> 2024-08-23T134525.200.json
+<> 2024-08-23T134454.200.json
+<> 2024-08-14T173410.200.json
+<> 2024-08-14T173353.200.json
+
+###
+# group: TicketType
+# @name Get TicketType info of TicketTypeId
+GET {{api_url}}/ticket-types/{{ticketTypeId}}
+
+<> 2024-08-23T134600.200.json
+<> 2024-08-23T134528.200.json
+<> 2024-08-23T134433.200.json
+<> 2024-08-23T134328.404.json
+<> 2024-08-14T173539.200.json
+<> 2024-08-14T173452.200.json
+
+
+###
+# group: TicketType
+# @name Change TicketType of Event
+PUT {{api_url}}/ticket-types/{{ticketTypeId}}/price
+Content-Type: application/json
+
+{
+  "price": "150.00"
+}
+
+<> 2024-08-23T134532.404.json

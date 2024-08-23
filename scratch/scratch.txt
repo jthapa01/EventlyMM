@@ -1,0 +1,38 @@
+Fixed the https cert error in docker by using this in docker-override
+	
+dotnet dev-certs https -ep "$env:USERPROFILE\.aspnet\https\aspnetapp.pfx"  -p $CREDENTIAL_PLACEHOLDER$
+dotnet dev-certs https --trust
+
+      - ASPNETCORE_Kestrel__Certificates__Default__Password=bookify
+      - ASPNETCORE_Kestrel__Certificates__Default__Path=/https/aspnetapp.pfx
+    ports:
+      - "8080"
+      - "8081"
+    volumes:
+      - ${APPDATA}/Microsoft/UserSecrets:/root/.microsoft/usersecrets:ro
+      - ~/.aspnet/https:/https:ro
+      
+Migration was not applied: There was existing data in the volume. Need to remove the existing data by
+running the following command: Will allow postgres to initialize a new db
+1. docker volume ls
+2. docker volume inspect <volume-name>(contains path to directory) or docker volume prune to remove all volumes
+3. (Remove-Item 'C:\path\to\your\directory' -Recurse -Force) in powershell
+will remove from ./.containers/database in local machine or Remove-Item -Recurse -Force .\.containers\database\*  in powershell
+to remove from docker volume: delete manually from docker desktop on this path /var/lib/postgresql/data
+when there is a code change then build the image. docker compose up -d -build. Else it will use the old image and may not reflect the changes
+for migration.
+None of the above worked for me and finally Using 172.18.0.2 worked for connecting to postgres db from app.
+
+In same port postgres server can run in background. Check and stop the service so that 
+docker can connect to in 5432 port or pick the different host port in docker-compose.yml.
+Like 5433:5432 (host to container port mapping)
+Win+R -> services.msc -> PostgreSQL Service -> Stop the service
+
+Used 5433 for docker, coz 5432 was already in use by local postgres server
+Connecting docker from Rider database or database tool: choose Host=localhost;Database=evently;Username=postgres;Password=password;Port=5433;
+
+connecting docker db from application, the appsetting file should have: host: db service name in docker-compose.yml, port: 5433(host port), user: postgres, password: password, database: dbname
+
+Seq
+-------
+localhost:8081

@@ -1,0 +1,31 @@
+###
+# group: Users
+# @name Register User
+POST {{api_url}}/users/register
+Content-Type: application/json
+
+{
+  "email": "test@gmail.com",
+  "password": "password",
+  "firstName": "John",
+  "lastName": "Doe"
+}
+
+
+###
+# group: Users
+# @name Get user profile
+GET {{api_url}}/users/1/profile
+
+
+###
+# group: Users
+# @name Change user profile
+PUT {{api_url}}/users/1/profile
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Doe"
+}
+
