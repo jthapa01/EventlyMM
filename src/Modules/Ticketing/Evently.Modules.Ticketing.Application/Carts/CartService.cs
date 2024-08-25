@@ -5,7 +5,7 @@ namespace Evently.Modules.Ticketing.Application.Carts;
 public sealed class CartService(ICacheService cacheService)
 {
     private static readonly TimeSpan DefaultExpiration = TimeSpan.FromMinutes(20);
-    
+
     public async Task<Cart> GetAsync(Guid customerId, CancellationToken cancellationToken = default)
     {
         string cacheKey = CreateCacheKey(customerId);

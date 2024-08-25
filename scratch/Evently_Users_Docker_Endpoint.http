@@ -1,3 +1,6 @@
+@customerId = c8117a3b-7664-4b02-b81e-2993954ec757
+@ticketTypeId = 5b603909-4a28-45d1-8e9e-bb90677dc9a6
+
 ###
 # group: Users
 # @name Register User
@@ -5,17 +8,17 @@ POST {{api_url}}/users/register
 Content-Type: application/json
 
 {
-  "email": "test@gmail.com",
+  "email": "Jaydon@gmail.com",
   "password": "password",
-  "firstName": "John",
-  "lastName": "Doe"
+  "firstName": "Jay",
+  "lastName": "Don"
 }
 
 
 ###
 # group: Users
 # @name Get user profile
-GET {{api_url}}/users/1/profile
+GET {{api_url}}/users/{{customerId}}/profile
 
 
 ###
@@ -29,3 +32,15 @@ Content-Type: application/json
   "lastName": "Doe"
 }
 
+
+###
+# group: Carts
+# @name Add To Cart
+PUT {{api_url}}/carts/add
+Content-Type: application/json
+
+{
+  "customerId": "{{customerId}}",
+  "ticketTypeId": "{{ticketTypeId}}",
+  "quantity": 5
+}
