@@ -1,0 +1,3 @@
+###
+# group: Health
+GET {{api_url}}/health

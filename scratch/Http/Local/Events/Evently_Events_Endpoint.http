@@ -1,0 +1,103 @@
+@categoryId = e71d1443-84ac-489c-8495-99828c48e09d
+@eventId = e7baef7e-141c-44f5-bb52-fe026fe33b44
+
+###
+# group: Events
+# @name Get Events
+GET {{api_url}}/events
+Content-Type: application/json
+
+<> 2024-08-23T134809.200.json
+<> 2024-08-23T133808.200.json
+
+###
+# group: Events
+# @name Get Event
+GET {{api_url}}/events/{{eventId}}
+Content-Type: application/json
+
+<> 2024-08-23T134813.200.json
+<> 2024-08-23T134754.200.json
+<> 2024-08-23T133825.200.json
+<> 2024-08-23T133233.200.json
+
+
+###
+# group: Events
+# draft can only be published
+# @name Publish Event
+PUT {{api_url}}/events/{{eventId}}/publish
+
+<> 2024-08-23T135135.400.json
+<> 2024-08-23T134822.400.json
+<> 2024-08-23T133830.400.json
+<> 2024-08-23T133507.400.json
+
+
+###
+# group: Events
+# @name Cancel Event
+PUT {{api_url}}/events/{{eventId}}/cancel
+Content-Type: application/json
+
+
+###
+# group: Events
+# @name Create Event
+POST {{api_url}}/events
+Content-Type: application/json
+
+{
+  "categoryId": "e71d1443-84ac-489c-8495-99828c48e09d",
+  "title": "Rock Concert",
+  "description": "Rock Concert Music Event",
+  "location": "Maryland",
+  "startsAtUtc": "2024-12-01T00:00:00Z",
+  "endsAtUtc": "2024-12-01T08:00:00Z"
+}
+
+<> 2024-08-23T133107.200.json
+<> 2024-08-23T132825.400.json
+<> 2024-08-23T132716.500.json
+<> 2024-08-23T132630.500.json
+<> 2024-08-23T132537.500.json
+<> 2024-08-23T131957.400.json
+
+###
+# group: Events
+# @name Search Events
+GET {{api_url}}/events/search
+Content-Type: application/json
+
+{
+  "categoryId": "{{categoryId}}",
+  "startDate": "2024-12-01T00:00:00Z",
+  "endDate": "2024-12-01T08:00:00Z"
+}
+
+<> 2024-08-23T142028.200.json
+<> 2024-08-23T140256.500.json
+<> 2024-08-23T140209.500.json
+<> 2024-08-23T140034.500.json
+<> 2024-08-23T135722.500.json
+
+###
+# group: Events
+# @name Reschedule Event
+PUT {{api_url}}/events/{{eventId}}/reschedule
+Content-Type: application/json
+
+{
+  "startsAtUtc": "2024-12-25T00:00:00Z",
+  "endsAtUtc": "2024-12-25T08:00:00Z"
+}
+
+
+
+
+
+
+
+
+
+

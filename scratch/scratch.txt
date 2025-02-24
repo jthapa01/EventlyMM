@@ -23,7 +23,7 @@ when there is a code change then build the image. docker compose up -d -build. E
 for migration.
 None of the above worked for me and finally Using 172.18.0.2 worked for connecting to postgres db from app.
 
-In same port postgres server can run in background. Check and stop the service so that 
+In same port postgres server can run in background. Check and stop the service in ur computer so that 
 docker can connect to in 5432 port or pick the different host port in docker-compose.yml.
 Like 5433:5432 (host to container port mapping)
 Win+R -> services.msc -> PostgreSQL Service -> Stop the service

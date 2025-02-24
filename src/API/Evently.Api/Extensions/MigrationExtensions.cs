@@ -14,6 +14,7 @@ internal static class MigrationExtensions
         ApplyMigration<EventsDbContext>(scope);
         ApplyMigration<UsersDbContext>(scope);
         ApplyMigration<TicketingDbContext>(scope);
+        ApplyMigration<AttendanceDbContext>(scope);
     }
 
     private static void ApplyMigration<TDbContext>(IServiceScope scope)

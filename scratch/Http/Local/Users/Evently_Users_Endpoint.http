@@ -1,0 +1,46 @@
+@customerId = 48923e71-c953-4941-8d96-4caeff2272b8
+@ticketTypeId = 5b603909-4a28-45d1-8e9e-bb90677dc9a6
+@access_token=eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJLWEV0WTlrVmRTUVJFdDlNWWFld1hVMWlHTDlVNlRVWGdZYUR6MFpOemJjIn0.eyJleHAiOjE3NDAxNTU1NTEsImlhdCI6MTc0MDE1MTk1MSwianRpIjoiMTYzOTI3YTItOWE3OS00NzM3LTk3MjktY2VhYzg3OWIyYjI5IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDoxODA4MC9yZWFsbXMvZXZlbnRseSIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiI3MjFmMjEzOC05ZmIwLTQ0NDUtYTI3Yi0yNjYxOTc0NzNjZTIiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJldmVudGx5LXB1YmxpYy1jbGllbnQiLCJzaWQiOiI0YTBmZjQ5Zi1lZDJhLTRjNWQtYTM4MC04YjYwNmRmODQ3OWUiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbIi8qIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsImRlZmF1bHQtcm9sZXMtZXZlbnRseSIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgZW1haWwgcHJvZmlsZSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoiVGVzdCBUZXN0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdEB0ZXN0LmNvbSIsImdpdmVuX25hbWUiOiJUZXN0IiwiZmFtaWx5X25hbWUiOiJUZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIn0.WJhGtxRd6d-MT-A1xZVNJyk4Ka9IAkakMFgwUURu9zjfbIx2nH5odVnD9BV3LyXGYeGIUquq8zPSUNrlY0bwxHzSx4MJ2shRp0RG8dpgg3MNF7nl9p_myDBSaQG57A2QyOsyF8vtFP8aygGFHz_80o1t-eiqIrrJ2KgUmFaWQGMkY3xUZFVJdpFmHzWjn6nK4FM6_Zq0BOsR-JtSnDXzvkX5a6zgK_GieGQUyYWfyWJTsDW5EaXRmWwTSLlyHe_q7JTDtWJTQVo6iLJ1NQoXeJwzGN9J7fRSpxU_qRfj7xO5fAai9FZqR1e-nMkvP23wqJLHZwYNUdIOav2TfOx29g
+###
+# group: Users
+# @name Register User
+POST {{api_url}}/users/register
+Content-Type: application/json
+
+{
+  "email": "Jaypa@gmail.com",
+  "password": "password",
+  "firstName": "Jay",
+  "lastName": "Pa"
+}
+
+
+###
+# group: Users
+# @name Get user profile
+GET {{api_url}}/users/{{customerId}}/profile
+Authorization: Bearer {{access_token}}
+
+###
+# group: Users
+# @name Change user profile
+PUT {{api_url}}/users/48923e71-c953-4941-8d96-4caeff2272b8/profile
+Content-Type: application/json
+
+{
+  "firstName": "John",
+  "lastName": "Doe"
+}
+
+
+###
+# group: Carts
+# @name Add To Cart
+PUT {{api_url}}/carts/add
+Content-Type: application/json
+
+{
+  "customerId": "{{customerId}}",
+  "ticketTypeId": "{{ticketTypeId}}",
+  "quantity": 5
+}

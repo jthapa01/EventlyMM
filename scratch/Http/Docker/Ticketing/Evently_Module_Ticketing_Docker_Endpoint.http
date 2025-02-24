@@ -1,0 +1,41 @@
+@ticketId = e71d1443-84ac-489c-8495-99828c48e09d
+@ticketCode = sample-ticket-code
+@orderId = sample-order-id
+@customerId = e71d1443-84ac-489c-8495-99828c48e09d
+@ticketTypeId = e7baef7e-141c-44f5-bb52-fe026fe33b44
+
+###
+# group: Tickets
+# @name Get Ticket
+GET {{api_url}}/tickets/{{ticketId}}
+Content-Type: application/json
+
+###
+# group: Tickets
+# @name Get Ticket By Code
+GET {{api_url}}/tickets/code/{{ticketCode}}
+Content-Type: application/json
+
+###
+# group: Tickets
+# @name Get Tickets For Order
+GET {{api_url}}/tickets/order/{{orderId}}
+Content-Type: application/json
+
+###
+# group: Carts
+# @name Add To Cart
+PUT {{api_url}}/carts/add
+Content-Type: application/json
+
+{
+  "customerId": "{{customerId}}",
+  "ticketTypeId": "{{ticketTypeId}}",
+  "quantity": 5
+}
+
+###
+# group: Orders
+# @name Get Order
+GET {{api_url}}/orders/{{orderId}}
+Content-Type: application/json
