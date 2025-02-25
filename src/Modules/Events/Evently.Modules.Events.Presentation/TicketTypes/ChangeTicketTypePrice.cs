@@ -13,13 +13,13 @@ internal sealed class ChangeTicketTypePrice : IEndpoint
 {
     public void MapEndpoint(IEndpointRouteBuilder app)
     {
-        app.MapPut("ticket-types/{id}/price", async (Guid id, Request request, ISender sender) =>
+        app.MapPut("ticket-types/{id:guid}/price", async (Guid id, Request request, ISender sender) =>
             {
                 Result result = await sender.Send(new UpdateTicketTypePriceCommand(id, request.Price));
 
                 return result.Match(Results.NoContent, ApiResults.Problem);
             })
-            .RequireAuthorization()
+            .RequireAuthorization(Permissions.ModifyTicketTypes)
             .WithTags(Tags.TicketTypes);
     }
 

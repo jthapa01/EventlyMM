@@ -1,4 +1,7 @@
+using System.Data;
 using System.Data.Common;
+using Evently.Common.Infrastructure.Inbox;
+using Evently.Common.Infrastructure.Outbox;
 using Evently.Modules.Ticketing.Application.Abstractions.Data;
 using Evently.Modules.Ticketing.Domain.Customers;
 using Evently.Modules.Ticketing.Domain.Events;
@@ -19,23 +22,27 @@ public sealed class TicketingDbContext(DbContextOptions<TicketingDbContext> opti
     : DbContext(options), IUnitOfWork
 {
     internal DbSet<Customer> Customers { get; set; }
-    
+
     internal DbSet<Event> Events { get; set; }
-    
+
     internal DbSet<TicketType> TicketTypes { get; set; }
-    
+
     internal DbSet<Order> Orders { get; set; }
-    
+
     internal DbSet<OrderItem> OrderItems { get; set; }
-    
+
     internal DbSet<Ticket> Tickets { get; set; }
-    
+
     internal DbSet<Payment> Payments { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.HasDefaultSchema(Schemas.Ticketing);
-        
+
+        modelBuilder.ApplyConfiguration(new OutboxMessageConfiguration());
+        modelBuilder.ApplyConfiguration(new OutboxMessageConsumerConfiguration());
+        modelBuilder.ApplyConfiguration(new InboxMessageConfiguration());
+        modelBuilder.ApplyConfiguration(new InboxMessageConsumerConfiguration());
         modelBuilder.ApplyConfiguration(new CustomerConfiguration());
         modelBuilder.ApplyConfiguration(new EventConfiguration());
         modelBuilder.ApplyConfiguration(new TicketTypeConfiguration());
