@@ -1,18 +1,22 @@
-﻿using Evently.Common.Application.EventBus;
+using Evently.Common.Application.EventBus;
 using Evently.Common.Application.Messaging;
 using Evently.Common.Infrastructure.Outbox;
 using Evently.Common.Presentation.Endpoints;
-using Evently.Modules.Events.Application.Abstractions.Data;
-using Evently.Modules.Events.Domain.Categories;
-using Evently.Modules.Events.Domain.Events;
-using Evently.Modules.Events.Domain.TicketTypes;
-using Evently.Modules.Events.Infrastructure.Categories;
-using Evently.Modules.Events.Infrastructure.Database;
-using Evently.Modules.Events.Infrastructure.Events;
-using Evently.Modules.Events.Infrastructure.Inbox;
-using Evently.Modules.Events.Infrastructure.Outbox;
-using Evently.Modules.Events.Infrastructure.TicketTypes;
-using Evently.Modules.Events.Presentation.Events.CancelEventSaga;
+using Evently.Modules.Attendance.Application.Abstractions.Authentication;
+using Evently.Modules.Attendance.Application.Abstractions.Data;
+using Evently.Modules.Attendance.Domain.Attendees;
+using Evently.Modules.Attendance.Domain.Events;
+using Evently.Modules.Attendance.Domain.Tickets;
+using Evently.Modules.Attendance.Infrastructure.Attendees;
+using Evently.Modules.Attendance.Infrastructure.Authentication;
+using Evently.Modules.Attendance.Infrastructure.Database;
+using Evently.Modules.Attendance.Infrastructure.Events;
+using Evently.Modules.Attendance.Infrastructure.Inbox;
+using Evently.Modules.Attendance.Infrastructure.Outbox;
+using Evently.Modules.Attendance.Infrastructure.Tickets;
+using Evently.Modules.Events.IntegrationEvents;
+using Evently.Modules.Ticketing.IntegrationEvents;
+using Evently.Module.Users.IntegrationEvents;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;
@@ -20,11 +24,11 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 
-namespace Evently.Modules.Events.Infrastructure;
+namespace Evently.Modules.Attendance.Infrastructure;
 
-public static class EventsModule
+public static class AttendanceModule
 {
-    public static IServiceCollection AddEventsModule(
+    public static IServiceCollection AddAttendanceModule(
         this IServiceCollection services,
         IConfiguration configuration)
     {
@@ -39,35 +43,39 @@ public static class EventsModule
         return services;
     }
 
-    public static Action<IRegistrationConfigurator> ConfigureConsumers(string redisConnectionString)
+    public static void ConfigureConsumers(IRegistrationConfigurator registrationConfigurator)
     {
-        return registration => registration
-            .AddSagaStateMachine<CancelEventSaga, CancelEventState>()
-            .RedisRepository(redisConnectionString);
+        registrationConfigurator.AddConsumer<IntegrationEventConsumer<UserRegisteredIntegrationEvent>>();
+        registrationConfigurator.AddConsumer<IntegrationEventConsumer<UserProfileUpdatedIntegrationEvent>>();
+        registrationConfigurator.AddConsumer<IntegrationEventConsumer<EventPublishedIntegrationEvent>>();
+        registrationConfigurator.AddConsumer<IntegrationEventConsumer<TicketIssuedIntegrationEvent>>();
+        registrationConfigurator.AddConsumer<IntegrationEventConsumer<EventCancellationStartedIntegrationEvent>>();
     }
 
     private static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContext<EventsDbContext>((sp, options) =>
+        services.AddDbContext<AttendanceDbContext>((sp, options) =>
             options
                 .UseNpgsql(
                     configuration.GetConnectionString("Database"),
                     npgsqlOptions => npgsqlOptions
-                        .MigrationsHistoryTable(HistoryRepository.DefaultTableName, Schemas.Events))
+                        .MigrationsHistoryTable(HistoryRepository.DefaultTableName, Schemas.Attendance))
                 .UseSnakeCaseNamingConvention()
                 .AddInterceptors(sp.GetRequiredService<InsertOutboxMessagesInterceptor>()));
 
-        services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<EventsDbContext>());
+        services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<AttendanceDbContext>());
 
+        services.AddScoped<IAttendeeRepository, AttendeeRepository>();
         services.AddScoped<IEventRepository, EventRepository>();
-        services.AddScoped<ITicketTypeRepository, TicketTypeRepository>();
-        services.AddScoped<ICategoryRepository, CategoryRepository>();
+        services.AddScoped<ITicketRepository, TicketRepository>();
 
-        services.Configure<OutboxOptions>(configuration.GetSection("Events:Outbox"));
+        services.AddScoped<IAttendanceContext, AttendanceContext>();
+
+        services.Configure<OutboxOptions>(configuration.GetSection("Attendance:Outbox"));
 
         services.ConfigureOptions<ConfigureProcessOutboxJob>();
 
-        services.Configure<InboxOptions>(configuration.GetSection("Events:Inbox"));
+        services.Configure<InboxOptions>(configuration.GetSection("Attendance:Inbox"));
 
         services.ConfigureOptions<ConfigureProcessInboxJob>();
     }
