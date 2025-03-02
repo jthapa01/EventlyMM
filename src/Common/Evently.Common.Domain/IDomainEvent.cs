@@ -1,6 +1,4 @@
-﻿using MediatR;
-
-namespace Evently.Common.Domain;
+﻿namespace Evently.Common.Domain;
 
 public interface IDomainEvent
 {

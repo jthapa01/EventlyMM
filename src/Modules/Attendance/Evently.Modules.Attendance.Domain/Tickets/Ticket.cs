@@ -1,6 +1,7 @@
 using Evently.Common.Domain;
 using Evently.Modules.Attendance.Domain.Attendees;
-using Evently.Modules.Events.Domain.Events;
+using Evently.Modules.Attendance.Domain.Events;
+
 
 namespace Evently.Modules.Attendance.Domain.Tickets;
 

@@ -1,7 +1,7 @@
 using Evently.Common.Application.EventBus;
 using Evently.Common.Application.Messaging;
-using Evently.Module.Users.IntegrationEvents;
 using Evently.Modules.Users.Domain.Users;
+using Evently.Modules.Users.IntegrationEvents;
 
 namespace Evently.Modules.Users.Application.Users.UpdateUser;
 

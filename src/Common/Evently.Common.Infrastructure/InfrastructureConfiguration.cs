@@ -4,6 +4,7 @@ using Evently.Common.Application.Clock;
 using Evently.Common.Application.Data;
 using Evently.Common.Application.EventBus;
 using Evently.Common.Infrastructure.Authentication;
+using Evently.Common.Infrastructure.Authorization;
 using Evently.Common.Infrastructure.Caching;
 using Evently.Common.Infrastructure.Clock;
 using Evently.Common.Infrastructure.Data;
@@ -29,8 +30,8 @@ public static class InfrastructureConfiguration
         string redisConnectionString)
     {
         services.AddAuthenticationInternal();
-
-        services.AddAuthorization();
+        
+        services.AddAuthorizationInternal();
         
         services.TryAddSingleton<IDateTimeProvider, DateTimeProvider>();
         

@@ -1,6 +1,6 @@
 using Evently.Common.Application.EventBus;
 
-namespace Evently.Module.Users.IntegrationEvents;
+namespace Evently.Modules.Users.IntegrationEvents;
 
 public sealed class UserProfileUpdatedIntegrationEvent(
     Guid id, DateTime occurredOnUtc, Guid userId, string firstName, string lastName) 

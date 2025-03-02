@@ -1,7 +1,8 @@
 using Evently.Common.Application.Messaging;
 using Evently.Common.Domain;
 using Evently.Modules.Attendance.Application.Abstractions.Data;
-using Evently.Modules.Ticketing.Domain.Events;
+using Evently.Modules.Attendance.Domain.Events;
+
 
 namespace Evently.Modules.Attendance.Application.Events.CreateEvent;
 

@@ -16,7 +16,7 @@ using Evently.Modules.Attendance.Infrastructure.Outbox;
 using Evently.Modules.Attendance.Infrastructure.Tickets;
 using Evently.Modules.Events.IntegrationEvents;
 using Evently.Modules.Ticketing.IntegrationEvents;
-using Evently.Module.Users.IntegrationEvents;
+using Evently.Modules.Users.IntegrationEvents;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations;

@@ -2,7 +2,7 @@ using FluentValidation;
 
 namespace Evently.Modules.Attendance.Application.Attendees.CreateAttendee;
 
-internal class CreateAttendeeCommandValidator : AbstractValidator<CreateAttendeeCommand>
+internal sealed class CreateAttendeeCommandValidator : AbstractValidator<CreateAttendeeCommand>
 {
     public CreateAttendeeCommandValidator()
     {

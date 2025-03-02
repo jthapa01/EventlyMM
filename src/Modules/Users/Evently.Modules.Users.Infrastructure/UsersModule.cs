@@ -28,9 +28,9 @@ public static class UsersModule
         IConfiguration configuration)
     {
         services.AddDomainEventHandlers();
-        
-        services. AddIntegrationEventHandlers();
-        
+
+        services.AddIntegrationEventHandlers();
+
         services.AddInfrastructure(configuration);
 
         services.AddEndpoints(Presentation.AssemblyReference.Assembly);
@@ -41,18 +41,23 @@ public static class UsersModule
     private static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         services.AddScoped<IPermissionService, PermissionService>();
+
         services.Configure<KeyCloakOptions>(configuration.GetSection("Users:KeyCloak"));
+
         services.AddTransient<KeyCloakAuthDelegatingHandler>();
-        
-        services.AddHttpClient<KeyCloakClient>((serviceProvider, httpClient) =>
-        {
-            KeyCloakOptions keyCloakOptions = serviceProvider.GetRequiredService<IOptions<KeyCloakOptions>>().Value;
-            httpClient.BaseAddress = new Uri(keyCloakOptions.AdminUrl);
-        })
-        .AddHttpMessageHandler<KeyCloakAuthDelegatingHandler>();
+
+        services
+            .AddHttpClient<KeyCloakClient>((serviceProvider, httpClient) =>
+            {
+                KeyCloakOptions keycloakOptions = serviceProvider
+                    .GetRequiredService<IOptions<KeyCloakOptions>>().Value;
+
+                httpClient.BaseAddress = new Uri(keycloakOptions.AdminUrl);
+            })
+            .AddHttpMessageHandler<KeyCloakAuthDelegatingHandler>();
 
         services.AddTransient<IIdentityProviderService, IdentityProviderService>();
-        
+
         services.AddDbContext<UsersDbContext>((sp, options) =>
             options
                 .UseNpgsql(
@@ -74,7 +79,7 @@ public static class UsersModule
 
         services.ConfigureOptions<ConfigureProcessInboxJob>();
     }
-    
+
     private static void AddDomainEventHandlers(this IServiceCollection services)
     {
         Type[] domainEventHandlers = Application.AssemblyReference.Assembly
@@ -85,13 +90,16 @@ public static class UsersModule
         foreach (Type domainEventHandler in domainEventHandlers)
         {
             services.TryAddScoped(domainEventHandler);
-            Type domainEvent = domainEventHandler.GetInterfaces()
+
+            Type domainEvent = domainEventHandler
+                .GetInterfaces()
                 .Single(i => i.IsGenericType)
                 .GetGenericArguments()
                 .Single();
-            
-            Type closeIdempotentHandler = typeof(IdempotentDomainEventHandler<>).MakeGenericType(domainEvent);
-            services.Decorate(domainEventHandler, closeIdempotentHandler);
+
+            Type closedIdempotentHandler = typeof(IdempotentDomainEventHandler<>).MakeGenericType(domainEvent);
+
+            services.Decorate(domainEventHandler, closedIdempotentHandler);
         }
     }
 
@@ -105,7 +113,9 @@ public static class UsersModule
         foreach (Type integrationEventHandler in integrationEventHandlers)
         {
             services.TryAddScoped(integrationEventHandler);
-            Type integrationEvent = integrationEventHandler.GetInterfaces()
+
+            Type integrationEvent = integrationEventHandler
+                .GetInterfaces()
                 .Single(i => i.IsGenericType)
                 .GetGenericArguments()
                 .Single();

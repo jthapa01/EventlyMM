@@ -2,7 +2,7 @@ using Evently.Common.Application.EventBus;
 using Evently.Common.Application.Messaging;
 using Evently.Common.Infrastructure.Outbox;
 using Evently.Common.Presentation.Endpoints;
-using Evently.Module.Users.IntegrationEvents;
+using Evently.Modules.Users.IntegrationEvents;
 using Evently.Modules.Events.IntegrationEvents;
 using Evently.Modules.Ticketing.Application.Abstractions.Authentication;
 using Evently.Modules.Ticketing.Application.Abstractions.Data;

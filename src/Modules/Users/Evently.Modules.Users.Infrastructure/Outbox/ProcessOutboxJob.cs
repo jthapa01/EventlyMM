@@ -75,7 +75,7 @@ internal sealed class ProcessOutboxJob(
                     content AS {nameof(OutboxMessageResponse.Content)}
                 FROM users.outbox_messages
                 WHERE processed_on_utc IS NULL
-                ORDER BY occured_on_utc
+                ORDER BY occurred_on_utc
                 LIMIT {outboxOptions.Value.BatchSize}
                 FOR UPDATE
              """;

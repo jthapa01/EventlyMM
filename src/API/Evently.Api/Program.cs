@@ -1,8 +1,10 @@
+using System.Reflection;
 using Evently.Api.Extensions;
 using Evently.Api.Middleware;
 using Evently.Api.OpenTelemetry;
 using Evently.Common.Application;
 using Evently.Common.Infrastructure;
+using Evently.Common.Infrastructure.Configuration;
 using Evently.Common.Presentation.Endpoints;
 using Evently.Modules.Attendance.Infrastructure;
 using Evently.Modules.Events.Infrastructure;
@@ -13,9 +15,9 @@ using Microsoft.AspNetCore.Diagnostics.HealthChecks;
 using Npgsql;
 using Serilog;
 
+
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-builder.Configuration.AddModuleConfiguration(["events", "users", "ticketing", "attendance"], builder.Environment.EnvironmentName);
 builder.Host.UseSerilog((context, loggerConfig) => loggerConfig.ReadFrom.Configuration(context.Configuration));
 
 builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
@@ -24,14 +26,16 @@ builder.Services.AddProblemDetails();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerDocumentation();
 
-builder.Services.AddApplication([
-    Evently.Modules.Events.Application.AssemblyReference.Assembly,
+Assembly[] moduleApplicationAssemblies = [
     Evently.Modules.Users.Application.AssemblyReference.Assembly,
+    Evently.Modules.Events.Application.AssemblyReference.Assembly,
     Evently.Modules.Ticketing.Application.AssemblyReference.Assembly,
-    Evently.Modules.Attendance.Application.AssemblyReference.Assembly]);
+    Evently.Modules.Attendance.Application.AssemblyReference.Assembly];
 
-string databaseConnectionString = builder.Configuration.GetConnectionString("Database")!;
-string redisConnectionString = builder.Configuration.GetConnectionString("Cache")!;
+builder.Services.AddApplication(moduleApplicationAssemblies);
+
+string databaseConnectionString = builder.Configuration.GetConnectionStringOrThrow("Database");
+string redisConnectionString = builder.Configuration.GetConnectionStringOrThrow("Cache");
 
 builder.Services.AddInfrastructure(
     DiagnosticsConfig.ServiceName,
@@ -50,9 +54,14 @@ builder.Services.AddHealthChecks()
     .AddRedis(redisConnectionString)
     .AddKeyCloak(keyCloakHealthUrl);
 
+builder.Configuration.AddModuleConfiguration(["users", "events", "ticketing", "attendance"],builder.Environment.EnvironmentName);
+
 builder.Services.AddEventsModule(builder.Configuration);
+
 builder.Services.AddUsersModule(builder.Configuration);
+
 builder.Services.AddTicketingModule(builder.Configuration);
+
 builder.Services.AddAttendanceModule(builder.Configuration);
 
 WebApplication app = builder.Build();
@@ -61,12 +70,9 @@ if (app.Environment.IsDevelopment() || app.Environment.IsEnvironment("Docker"))
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    
-    // Retry mechanism for database connection
-    RetryDatabaseConnection(app, 5, TimeSpan.FromSeconds(10));
-}
 
-app.MapEndpoints();
+    RetryDatabaseConnection(app, 3, TimeSpan.FromSeconds(10));
+}
 
 app.MapHealthChecks("health", new HealthCheckOptions
 {

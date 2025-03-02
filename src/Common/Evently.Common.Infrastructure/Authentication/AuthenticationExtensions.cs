@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace Evently.Common.Infrastructure.Authentication;
@@ -14,7 +13,7 @@ internal static class AuthenticationExtensions
         services.AddHttpContextAccessor();
 
         services.ConfigureOptions<JwtBearerConfigureOptions>();
-        
+
         return services;
     }
 }

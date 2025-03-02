@@ -4,5 +4,5 @@ namespace Evently.Common.Application.Authorization;
 
 public interface IPermissionService
 {
-    Task<Result<PermissionResponse>> GetUserPermissionAsync(string identityId);
+    Task<Result<PermissionsResponse>> GetUserPermissionsAsync(string identityId);
 }

@@ -6,7 +6,7 @@
 POST {{keycloak_url}}/realms/evently/protocol/openid-connect/token
 Content-Type: application/x-www-form-urlencoded
 
-grant_type=password&client_id=evently-public-client&scope=email%20openid&username=test@test.com&password=123
+grant_type=password&client_id=evently-public-client&scope=email%20openid&username=test@test.com&password=123456
 
 ###
 # group: RefreshToken

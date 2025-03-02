@@ -2,9 +2,9 @@ using Evently.Common.Application.EventBus;
 using Evently.Common.Application.Exceptions;
 using Evently.Common.Application.Messaging;
 using Evently.Common.Domain;
-using Evently.Module.Users.IntegrationEvents;
 using Evently.Modules.Users.Application.Users.GetUser;
 using Evently.Modules.Users.Domain.Users;
+using Evently.Modules.Users.IntegrationEvents;
 using MediatR;
 
 namespace Evently.Modules.Users.Application.Users.RegisterUser;

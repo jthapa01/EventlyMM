@@ -1,12 +1,5 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-    
-    <PropertyGroup>
-      <AssemblyName>Evently.Modules.Users.IntegrationEvents</AssemblyName>
-      <RootNamespace>Evently.Modules.Users.IntegrationEvents</RootNamespace>
-    </PropertyGroup>
-    
     <ItemGroup>
-      <ProjectReference Include="..\..\..\Common\Evently.Common.Application\Evently.Common.Application.csproj" />
+        <ProjectReference Include="..\..\..\Common\Evently.Common.Application\Evently.Common.Application.csproj" />
     </ItemGroup>
-
 </Project>

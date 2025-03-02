@@ -1,11 +1,4 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
-    <PropertyGroup>
-        <TargetFramework>net8.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-    </PropertyGroup>
-
     <ItemGroup>
       <ProjectReference Include="..\..\..\Common\Evently.Common.Presentation\Evently.Common.Presentation.csproj" />
       <ProjectReference Include="..\..\Events\Evently.Modules.Events.IntegrationEvents\Evently.Modules.Events.IntegrationEvents.csproj" />
@@ -13,5 +6,4 @@
       <ProjectReference Include="..\..\Users\Evently.Module.Users.IntegrationEvents\Evently.Module.Users.IntegrationEvents.csproj" />
       <ProjectReference Include="..\Evently.Modules.Attendance.Application\Evently.Modules.Attendance.Application.csproj" />
     </ItemGroup>
-
 </Project>

@@ -18,18 +18,20 @@ internal sealed class CustomClaimsTransformation(IServiceScopeFactory serviceSco
         }
 
         using IServiceScope scope = serviceScopeFactory.CreateScope();
+
         IPermissionService permissionService = scope.ServiceProvider.GetRequiredService<IPermissionService>();
 
         string identityId = principal.GetIdentityId();
 
-        Result<PermissionResponse> result = await permissionService.GetUserPermissionAsync(identityId);
+        Result<PermissionsResponse> result = await permissionService.GetUserPermissionsAsync(identityId);
 
         if (result.IsFailure)
         {
-            throw new EventlyException(nameof(IPermissionService.GetUserPermissionAsync), result.Error);
+            throw new EventlyException(nameof(IPermissionService.GetUserPermissionsAsync), result.Error);
         }
 
         var claimsIdentity = new ClaimsIdentity();
+
         claimsIdentity.AddClaim(new Claim(CustomClaims.Sub, result.Value.UserId.ToString()));
 
         foreach (string permission in result.Value.Permissions)
@@ -38,6 +40,7 @@ internal sealed class CustomClaimsTransformation(IServiceScopeFactory serviceSco
         }
 
         principal.AddIdentity(claimsIdentity);
+
         return principal;
     }
 }
