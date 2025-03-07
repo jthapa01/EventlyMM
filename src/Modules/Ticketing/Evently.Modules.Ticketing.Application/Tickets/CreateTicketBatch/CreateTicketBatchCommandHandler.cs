@@ -7,7 +7,7 @@ using Evently.Modules.Ticketing.Domain.Tickets;
 
 namespace Evently.Modules.Ticketing.Application.Tickets.CreateTicketBatch;
 
-public sealed class CreateTicketBatchCommandHandler(
+internal sealed class CreateTicketBatchCommandHandler(
     IOrderRepository orderRepository,
     ITicketTypeRepository ticketTypeRepository,
     ITicketRepository ticketRepository,

@@ -1,0 +1,60 @@
+using Evently.Modules.Attendance.ArchitectureTests.Abstractions;
+using NetArchTest.Rules;
+
+namespace Evently.Modules.Attendance.ArchitectureTests.Layers;
+
+#pragma warning disable CA1515
+public class LayerTests : BaseTest
+#pragma warning restore CA1515
+{
+    [Fact]
+    public void DomainLayer_ShouldNotHaveDependencyOn_ApplicationLayer()
+    {
+        Types.InAssembly(DomainAssembly)
+            .Should()
+            .NotHaveDependencyOn(ApplicationAssembly.GetName().Name)
+            .GetResult()
+            .ShouldBeSuccessful();
+    }
+
+    [Fact]
+    public void DomainLayer_ShouldNotHaveDependencyOn_InfrastructureLayer()
+    {
+        Types
+            .InAssembly(DomainAssembly)
+            .Should()
+            .NotHaveDependencyOn(InfrastructureAssembly.GetName().Name)
+            .GetResult()
+            .ShouldBeSuccessful();
+    }
+
+    [Fact]
+    public void ApplicationLayer_ShouldNotHaveDependencyOn_InfrastructureLayer()
+    {
+        Types.InAssembly(ApplicationAssembly)
+            .Should()
+            .NotHaveDependencyOn(InfrastructureAssembly.GetName().Name)
+            .GetResult()
+            .ShouldBeSuccessful();
+    }
+
+    [Fact]
+    public void ApplicationLayer_ShouldNotHaveDependencyOn_PresentationLayer()
+    {
+        Types.InAssembly(ApplicationAssembly)
+            .Should()
+            .NotHaveDependencyOn(PresentationAssembly.GetName().Name)
+            .GetResult()
+            .ShouldBeSuccessful();
+    }
+
+    [Fact]
+    public void PresentationLayer_ShouldNotHaveDependencyOn_InfrastructureLayer()
+    {
+        Types.InAssembly(PresentationAssembly)
+            .Should()
+            .NotHaveDependencyOn(InfrastructureAssembly.GetName().Name)
+            .GetResult()
+            .ShouldBeSuccessful();
+    }
+}

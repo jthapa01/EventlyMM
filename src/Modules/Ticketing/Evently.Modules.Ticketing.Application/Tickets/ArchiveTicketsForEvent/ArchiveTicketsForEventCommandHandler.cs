@@ -7,7 +7,7 @@ using Evently.Modules.Ticketing.Domain.Tickets;
 
 namespace Evently.Modules.Ticketing.Application.Tickets.ArchiveTicketsForEvent;
 
-public sealed class ArchiveTicketsForEventCommandHandler(
+internal sealed class ArchiveTicketsForEventCommandHandler(
     IEventRepository eventRepository,
     ITicketRepository ticketTypeRepository,
     IUnitOfWork unitOfWork)

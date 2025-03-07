@@ -7,7 +7,7 @@ using Evently.Modules.Attendance.Domain.Tickets;
 
 namespace Evently.Modules.Attendance.Application.Tickets.CreateTicket;
 
-public sealed class CreateTicketCommandHandler(
+internal sealed class CreateTicketCommandHandler(
     IAttendeeRepository attendeeRepository,
     IEventRepository eventRepository,
     ITicketRepository ticketRepository,

@@ -6,7 +6,7 @@ using Evently.Modules.Attendance.Domain.Events;
 
 namespace Evently.Modules.Attendance.Application.Events.CreateEvent;
 
-public sealed class CreateEventCommandHandler(
+internal sealed class CreateEventCommandHandler(
     IEventRepository eventRepository,
     IUnitOfWork unitOfWork)
 : ICommandHandler<CreateEventCommand>

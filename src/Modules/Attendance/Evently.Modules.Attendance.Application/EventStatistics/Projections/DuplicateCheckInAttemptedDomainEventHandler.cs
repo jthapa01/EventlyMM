@@ -6,7 +6,7 @@ using Evently.Modules.Attendance.Domain.Attendees;
 
 namespace Evently.Modules.Attendance.Application.EventStatistics.Projections;
 
-public sealed class DuplicateCheckInAttemptedDomainEventHandler(IDbConnectionFactory dbConnectionFactory)
+internal sealed class DuplicateCheckInAttemptedDomainEventHandler(IDbConnectionFactory dbConnectionFactory)
     : DomainEventHandler<DuplicateCheckInAttemptedDomainEvent>
 {
     public override async Task Handle(DuplicateCheckInAttemptedDomainEvent domainEvent, CancellationToken cancellationToken = default)

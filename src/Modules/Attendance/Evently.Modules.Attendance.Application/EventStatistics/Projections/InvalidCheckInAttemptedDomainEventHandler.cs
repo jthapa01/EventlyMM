@@ -6,7 +6,7 @@ using Evently.Modules.Attendance.Domain.Attendees;
 
 namespace Evently.Modules.Attendance.Application.EventStatistics.Projections;
 
-public sealed class InvalidCheckInAttemptedDomainEventHandler(IDbConnectionFactory dbConnectionFactory)
+internal sealed class InvalidCheckInAttemptedDomainEventHandler(IDbConnectionFactory dbConnectionFactory)
 : DomainEventHandler<InvalidCheckInAttemptedDomainEvent>
 {
     public override async Task Handle(InvalidCheckInAttemptedDomainEvent domainEvent, CancellationToken cancellationToken = default)

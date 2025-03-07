@@ -5,7 +5,7 @@ using Evently.Modules.Ticketing.Domain.Events;
 
 namespace Evently.Modules.Ticketing.Application.Events.CancelEvent;
 
-public sealed class CancelEventCommandHandler(IEventRepository eventRepository, IUnitOfWork unitOfWork)
+internal sealed class CancelEventCommandHandler(IEventRepository eventRepository, IUnitOfWork unitOfWork)
     : ICommandHandler<CancelEventCommand>
 {
     public async Task<Result> Handle(CancelEventCommand request, CancellationToken cancellationToken)

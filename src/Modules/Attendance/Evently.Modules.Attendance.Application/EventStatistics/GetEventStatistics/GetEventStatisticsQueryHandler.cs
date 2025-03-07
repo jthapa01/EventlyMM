@@ -7,7 +7,7 @@ using Evently.Modules.Attendance.Domain.Events;
 
 namespace Evently.Modules.Attendance.Application.EventStatistics.GetEventStatistics;
 
-public sealed class GetEventStatisticsQueryHandler(IDbConnectionFactory dbConnectionFactory)
+internal sealed class GetEventStatisticsQueryHandler(IDbConnectionFactory dbConnectionFactory)
     : IQueryHandler<GetEventStatisticsQuery, EventStatisticsResponse>
 {
     public async Task<Result<EventStatisticsResponse>> Handle(GetEventStatisticsQuery request,

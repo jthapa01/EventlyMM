@@ -2,7 +2,7 @@ using FluentValidation;
 
 namespace Evently.Modules.Ticketing.Application.TicketTypes.UpdateTicketTypePrice;
 
-public sealed class UpdateTicketTypePriceCommandValidator : AbstractValidator<UpdateTicketTypePriceCommand>
+internal sealed class UpdateTicketTypePriceCommandValidator : AbstractValidator<UpdateTicketTypePriceCommand>
 {
     public UpdateTicketTypePriceCommandValidator()
     {

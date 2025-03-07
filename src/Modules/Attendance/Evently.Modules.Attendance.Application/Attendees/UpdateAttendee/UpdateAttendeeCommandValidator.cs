@@ -2,7 +2,7 @@ using FluentValidation;
 
 namespace Evently.Modules.Attendance.Application.Attendees.UpdateAttendee;
 
-public sealed class UpdateAttendeeCommandValidator : AbstractValidator<UpdateAttendeeCommand>
+internal sealed class UpdateAttendeeCommandValidator : AbstractValidator<UpdateAttendeeCommand>
 {
     public UpdateAttendeeCommandValidator()
     {

@@ -2,7 +2,7 @@ using FluentValidation;
 
 namespace Evently.Modules.Attendance.Application.Tickets.CreateTicket;
 
-public class CreateTicketCommandValidator : AbstractValidator<CreateTicketCommand>
+internal sealed class CreateTicketCommandValidator : AbstractValidator<CreateTicketCommand>
 {
     public CreateTicketCommandValidator()
     {

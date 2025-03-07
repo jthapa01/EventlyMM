@@ -7,7 +7,7 @@ using Evently.Modules.Ticketing.Domain.Orders;
 
 namespace Evently.Modules.Ticketing.Application.Orders.GetOrder;
 
-public sealed class GetOrderQueryHandler(IDbConnectionFactory dbConnectionFactory)
+internal sealed class GetOrderQueryHandler(IDbConnectionFactory dbConnectionFactory)
     : IQueryHandler<GetOrderQuery, OrderResponse>
 {
     public async Task<Result<OrderResponse>> Handle(GetOrderQuery request, CancellationToken cancellationToken)

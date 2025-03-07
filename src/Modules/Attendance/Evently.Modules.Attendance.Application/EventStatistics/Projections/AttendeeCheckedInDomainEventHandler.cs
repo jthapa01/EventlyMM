@@ -6,7 +6,7 @@ using Evently.Modules.Attendance.Domain.Attendees;
 
 namespace Evently.Modules.Attendance.Application.EventStatistics.Projections;
 
-public sealed class AttendeeCheckedInDomainEventHandler(IDbConnectionFactory dbConnectionFactory)
+internal sealed class AttendeeCheckedInDomainEventHandler(IDbConnectionFactory dbConnectionFactory)
     : DomainEventHandler<AttendeeCheckedInDomainEvent>
 {
     public override async Task Handle(AttendeeCheckedInDomainEvent domainEvent, CancellationToken cancellationToken = default)

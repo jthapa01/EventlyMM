@@ -6,7 +6,7 @@ using Evently.Common.Domain;
 
 namespace Evently.Modules.Ticketing.Application.Orders.GetOrders;
 
-public sealed class GetOrdersQueryHandler(IDbConnectionFactory dbConnectionFactory)
+internal sealed class GetOrdersQueryHandler(IDbConnectionFactory dbConnectionFactory)
     : IQueryHandler<GetOrdersQuery, IReadOnlyCollection<OrderResponse>>
 {
     public async Task<Result<IReadOnlyCollection<OrderResponse>>> Handle(

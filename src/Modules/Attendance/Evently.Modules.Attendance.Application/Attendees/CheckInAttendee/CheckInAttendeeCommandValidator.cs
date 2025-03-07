@@ -2,7 +2,7 @@ using FluentValidation;
 
 namespace Evently.Modules.Attendance.Application.Attendees.CheckInAttendee;
 
-public sealed class CheckInAttendeeCommandValidator : AbstractValidator<CheckInAttendeeCommand>
+internal sealed class CheckInAttendeeCommandValidator : AbstractValidator<CheckInAttendeeCommand>
 {
     public CheckInAttendeeCommandValidator()
     {

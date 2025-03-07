@@ -2,7 +2,7 @@ using FluentValidation;
 
 namespace Evently.Modules.Ticketing.Application.Customers.UpdateCustomer;
 
-public class UpdateCustomerCommandValidator: AbstractValidator<UpdateCustomerCommand>
+internal sealed class UpdateCustomerCommandValidator: AbstractValidator<UpdateCustomerCommand>
 {
     public UpdateCustomerCommandValidator()
     {

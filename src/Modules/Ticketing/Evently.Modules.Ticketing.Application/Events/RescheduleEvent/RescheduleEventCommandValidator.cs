@@ -2,7 +2,7 @@ using FluentValidation;
 
 namespace Evently.Modules.Ticketing.Application.Events.RescheduleEvent;
 
-public sealed class RescheduleEventCommandValidator : AbstractValidator<RescheduleEventCommand>
+internal sealed class RescheduleEventCommandValidator : AbstractValidator<RescheduleEventCommand>
 {
     public RescheduleEventCommandValidator()
     {
