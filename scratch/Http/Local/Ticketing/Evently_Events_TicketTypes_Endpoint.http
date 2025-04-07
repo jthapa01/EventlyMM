@@ -1,14 +1,16 @@
-@eventId = e7baef7e-141c-44f5-bb52-fe026fe33b44
-@ticketTypeId = 5b603909-4a28-45d1-8e9e-bb90677dc9a6
+@eventId = dd9d4331-4bd6-4709-bf77-36f7b4b6c98a
+@ticketTypeId = c82feb36-270f-43b7-849c-cb86578db269
+@access_token=eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJLWEV0WTlrVmRTUVJFdDlNWWFld1hVMWlHTDlVNlRVWGdZYUR6MFpOemJjIn0.eyJleHAiOjE3NDE3NTE5MDIsImlhdCI6MTc0MTc0ODMwMiwianRpIjoiNjAzMmIyZjQtYzFhYS00YjVmLTg2OTQtOTVmNjU1YjQ1NTg0IiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDoxODA4MC9yZWFsbXMvZXZlbnRseSIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiJiMGY1MDgyMS1hNzIyLTQ3OGMtODBiMi02YmZiOGUyZjU3N2IiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJldmVudGx5LXB1YmxpYy1jbGllbnQiLCJzaWQiOiI2ZjRlOTIwYy04NjA5LTQzYzEtYjUxZi02ZjA1NTY4NmZiNjMiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbIi8qIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsImRlZmF1bHQtcm9sZXMtZXZlbnRseSIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgZW1haWwgcHJvZmlsZSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoiVGVzdCBUZXN0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdEB0ZXN0LmNvbSIsImdpdmVuX25hbWUiOiJUZXN0IiwiZmFtaWx5X25hbWUiOiJUZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIn0.iXqcoGczKlBJYKlJM5CE5eVEKz4vz2JwsSQE_RBYOUDcE6jxXWIMDMlrOJJOitZWERHAEa6dvk3r87kCnmwEjo_ueoq2DczsGKgr8oWxpt1-emPBIfCpCi8AvWC88uQVZCB6Kk8eACccULAn3o8JI6XsyBMm8otxwWf0LQrWhsRAYtWsjqXhL0uWGjxKsh0-DepgU98_J6_SywHuAomzvrnpv8pv-qMsogBYRoR7y-O2ajJbGalAglwVGuC0nwKQEYB2CTmZzUw7s_HOT4wRALZC0N5jYih_hV-BQ9UbESiO_YqhUcfseTGK8jm-yVaSLNh2dp4Ed6Js5bQrBh6pPQ
 
 ###
 # group: TicketType
 # @name Create TicketTypes per Event
 POST {{api_url}}/ticket-types
 Content-Type: application/json
+Authorization: Bearer {{access_token}}
 
 {
-  "eventId": "e7baef7e-141c-44f5-bb52-fe026fe33b44",
+  "eventId": "{{eventId}}",
   "name": "VIP",
   "price": 100.00,
   "currency": "USD",
@@ -22,6 +24,7 @@ Content-Type: application/json
 # group: TicketTypes
 # @name Get TicketTypes per Event
 GET {{api_url}}/ticket-types?eventId={{eventId}}
+Authorization: Bearer {{access_token}}
 
 <> 2024-08-23T134525.200.json
 <> 2024-08-23T134454.200.json
@@ -32,6 +35,7 @@ GET {{api_url}}/ticket-types?eventId={{eventId}}
 # group: TicketType
 # @name Get TicketType info of TicketTypeId
 GET {{api_url}}/ticket-types/{{ticketTypeId}}
+Authorization: Bearer {{access_token}}
 
 <> 2024-08-23T134600.200.json
 <> 2024-08-23T134528.200.json
@@ -46,6 +50,7 @@ GET {{api_url}}/ticket-types/{{ticketTypeId}}
 # @name Change TicketType of Event
 PUT {{api_url}}/ticket-types/{{ticketTypeId}}/price
 Content-Type: application/json
+Authorization: Bearer {{access_token}}
 
 {
   "price": "150.00"

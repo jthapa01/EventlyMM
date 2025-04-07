@@ -1,20 +1,18 @@
-@id = e71d1443-84ac-489c-8495-99828c48e09d
-
+@id = 32008577-e965-4562-b350-ae8e22e42afe
+@access_token=eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICJLWEV0WTlrVmRTUVJFdDlNWWFld1hVMWlHTDlVNlRVWGdZYUR6MFpOemJjIn0.eyJleHAiOjE3NDE1NTMzMTQsImlhdCI6MTc0MTU0OTcxNCwianRpIjoiMTA2MTExMWEtOGQ1OC00OTlmLWI4M2YtZGEzYjY0MGQyZWRjIiwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDoxODA4MC9yZWFsbXMvZXZlbnRseSIsImF1ZCI6ImFjY291bnQiLCJzdWIiOiJiMGY1MDgyMS1hNzIyLTQ3OGMtODBiMi02YmZiOGUyZjU3N2IiLCJ0eXAiOiJCZWFyZXIiLCJhenAiOiJldmVudGx5LXB1YmxpYy1jbGllbnQiLCJzaWQiOiIwYzg1NmU0Zi1lODk2LTQzNTctYWVkNy1hMjU0NTFmMWQ1ZmMiLCJhY3IiOiIxIiwiYWxsb3dlZC1vcmlnaW5zIjpbIi8qIl0sInJlYWxtX2FjY2VzcyI6eyJyb2xlcyI6WyJvZmZsaW5lX2FjY2VzcyIsImRlZmF1bHQtcm9sZXMtZXZlbnRseSIsInVtYV9hdXRob3JpemF0aW9uIl19LCJyZXNvdXJjZV9hY2Nlc3MiOnsiYWNjb3VudCI6eyJyb2xlcyI6WyJtYW5hZ2UtYWNjb3VudCIsIm1hbmFnZS1hY2NvdW50LWxpbmtzIiwidmlldy1wcm9maWxlIl19fSwic2NvcGUiOiJvcGVuaWQgZW1haWwgcHJvZmlsZSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJuYW1lIjoiVGVzdCBUZXN0IiwicHJlZmVycmVkX3VzZXJuYW1lIjoidGVzdEB0ZXN0LmNvbSIsImdpdmVuX25hbWUiOiJUZXN0IiwiZmFtaWx5X25hbWUiOiJUZXN0IiwiZW1haWwiOiJ0ZXN0QHRlc3QuY29tIn0.IbQRR9kxFbCQbs0gfdgaix7Lyl_kS3XqkgoFPMx922PobvuT4gGCj8Y7Be7ZX38facjJKeMeQLzfuHb71WrkM0jVUSz_YQAoTaIoTFVYgkK9XK8B5t38hR1pDUR0r4vOiXOK_ytvyLuGSYjrPTYW4GabuANg1BjaXzMRzVzSPKuGgKLzl7sn3LF3XSdz2xymGKcApt52dFhou4hz_kdUtnhqeJN3gxrmts6b4F8gfqWpohr2CKuW9CpT40q0GBytUgGmRuyQdKLxuijFldRCTMiUlxGV8F8xpcUPYNNWln1RqeJy-v-ec8oQ1WIArr9TVgMFT2ANlbO-HzNqdeDNng
 ###
 # group: Categories
 # @name Get Categories
 GET {{api_url}}/categories
 Content-Type: application/json
-
-<> 2024-08-23T130929.200.json
-<> 2024-08-23T130907.200.json
-
+Authorization: Bearer {{access_token}}
 
 ###
 # group: Categories
 # @name Get Category
 GET {{api_url}}/categories/{{id}}
 Content-Type: application/json
+Authorization: Bearer {{access_token}}
 
 <> 2024-08-23T131453.200.json
 <> 2024-08-23T131408.200.json
@@ -25,6 +23,7 @@ Content-Type: application/json
 # @name Create Category
 POST {{api_url}}/categories
 Content-Type: application/json
+Authorization: Bearer {{access_token}}
 
 {
   "name": "Rock Music"
@@ -39,6 +38,7 @@ Content-Type: application/json
 # @name Update Category
 PUT {{api_url}}/categories/{{id}}
 Content-Type: application/json
+Authorization: Bearer {{access_token}}
 
 {
   "name": "Updated Category Name"
@@ -50,6 +50,7 @@ Content-Type: application/json
 # @name Archive Category
 PUT {{api_url}}/categories/{{id}}/archive
 Content-Type: application/json
+Authorization: Bearer {{access_token}}
 
 {
   "id": "00000000-0000-0000-0000-000000000000"

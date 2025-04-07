@@ -20,7 +20,8 @@ using StackExchange.Redis;
 
 namespace Evently.Common.Infrastructure;
 
-public static class InfrastructureConfiguration
+public static class 
+    InfrastructureConfiguration
 {
     public static IServiceCollection AddInfrastructure(
         this IServiceCollection services,

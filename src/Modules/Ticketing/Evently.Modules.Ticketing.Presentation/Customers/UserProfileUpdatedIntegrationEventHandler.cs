@@ -1,8 +1,8 @@
 using Evently.Common.Application.EventBus;
 using Evently.Common.Application.Exceptions;
 using Evently.Common.Domain;
-using Evently.Modules.Users.IntegrationEvents;
 using Evently.Modules.Ticketing.Application.Customers.UpdateCustomer;
+using Evently.Modules.Users.IntegrationEvents;
 using MediatR;
 
 namespace Evently.Modules.Ticketing.Presentation.Customers;

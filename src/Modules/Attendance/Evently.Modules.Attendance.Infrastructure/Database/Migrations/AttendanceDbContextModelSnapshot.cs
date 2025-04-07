@@ -173,18 +173,18 @@ partial class AttendanceDbContextModelSnapshot : ModelSnapshot
                 .HasColumnType("text")
                 .HasColumnName("description");
 
-            b.Property<DateTime?>("EndAtUtc")
+            b.Property<DateTime?>("EndsAtUtc")
                 .HasColumnType("timestamp with time zone")
-                .HasColumnName("end_at_utc");
+                .HasColumnName("ends_at_utc");
 
             b.Property<string>("Location")
                 .IsRequired()
                 .HasColumnType("text")
                 .HasColumnName("location");
 
-            b.Property<DateTime>("StartAtUtc")
+            b.Property<DateTime>("StartsAtUtc")
                 .HasColumnType("timestamp with time zone")
-                .HasColumnName("start_at_utc");
+                .HasColumnName("starts_at_utc");
 
             b.Property<string>("Title")
                 .IsRequired()
@@ -203,9 +203,9 @@ partial class AttendanceDbContextModelSnapshot : ModelSnapshot
                 .HasColumnType("uuid")
                 .HasColumnName("event_id");
 
-            b.Property<int>("AttendeesCheckIn")
+            b.Property<int>("AttendeesCheckedIn")
                 .HasColumnType("integer")
-                .HasColumnName("attendees_check_in");
+                .HasColumnName("attendees_checked_in");
 
             b.Property<string>("Description")
                 .IsRequired()
@@ -217,9 +217,9 @@ partial class AttendanceDbContextModelSnapshot : ModelSnapshot
                 .HasColumnType("text[]")
                 .HasColumnName("duplicate_check_in_tickets");
 
-            b.Property<DateTime?>("EndAtUtc")
+            b.Property<DateTime?>("EndsAtUtc")
                 .HasColumnType("timestamp with time zone")
-                .HasColumnName("end_at_utc");
+                .HasColumnName("ends_at_utc");
 
             b.Property<List<string>>("InvalidCheckInTickets")
                 .IsRequired()
@@ -231,9 +231,9 @@ partial class AttendanceDbContextModelSnapshot : ModelSnapshot
                 .HasColumnType("text")
                 .HasColumnName("location");
 
-            b.Property<DateTime>("StartAtUtc")
+            b.Property<DateTime>("StartsAtUtc")
                 .HasColumnType("timestamp with time zone")
-                .HasColumnName("start_at_utc");
+                .HasColumnName("starts_at_utc");
 
             b.Property<int>("TicketsSold")
                 .HasColumnType("integer")

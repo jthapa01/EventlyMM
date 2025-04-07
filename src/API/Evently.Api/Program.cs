@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using Evently.Api.Extensions;
 using Evently.Api.Middleware;
@@ -120,3 +121,6 @@ static void RetryDatabaseConnection(WebApplication app, int maxRetries, TimeSpan
         }
     }
 }
+
+[SuppressMessage("Design", "CA1515:Types should be made internal", Justification = "This class needs to be public for integration tests.")]
+public partial class Program;
